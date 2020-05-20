@@ -25,8 +25,6 @@ namespace AWS_2
     /// </summary>
     public partial class TextService : Window
     {
-        string AWS_ACCESS_KEY = "AKIASASJUZ22FVGPJRFH";
-        string AWS_SECRET_KEY = "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";
         bool isFolderExist = false;
 
         public TextService()
@@ -40,7 +38,7 @@ namespace AWS_2
 
             if (translateText != "")
             {
-                var translate = new AmazonTranslateClient(AWS_ACCESS_KEY, AWS_SECRET_KEY, RegionEndpoint.APSoutheast1);
+                var translate = new AmazonTranslateClient();
                 var request = new TranslateTextRequest()
                 {
                     Text = translateText,
@@ -59,13 +57,13 @@ namespace AWS_2
 
             if (readingText != "")
             {
-                var speech = new AmazonPollyClient(AWS_ACCESS_KEY, AWS_SECRET_KEY, RegionEndpoint.APSoutheast1);
+                var speech = new AmazonPollyClient();
                 var request = new SynthesizeSpeechRequest()
                 {
                     Text = readingText,
-                    LanguageCode = LanguageCode.EnUS,
+                    LanguageCode = LanguageCode.EnGB,
                     OutputFormat = OutputFormat.Mp3,
-                    VoiceId = VoiceId.Salli
+                    VoiceId = VoiceId.Emma
                 };
                 SynthesizeSpeechResponse speechResponse = speech.SynthesizeSpeech(request);
                 string baseDicrectory = AppDomain.CurrentDomain.BaseDirectory;
