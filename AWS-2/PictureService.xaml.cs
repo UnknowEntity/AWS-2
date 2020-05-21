@@ -36,6 +36,8 @@ namespace AWS_2
             {
                 string filePath = openFileDialog.FileName;
                 txtFilePath.Content = $"File: {filePath}";
+                pbMyPictureBox.ResetPictureBox();
+                txtResult.Text = "";
                 pbMyPictureBox.LoadPicture(filePath);
                 isChoose = true;
             }

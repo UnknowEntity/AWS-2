@@ -26,6 +26,8 @@ namespace AWS_2.User_Controls
     public partial class PictureBox : UserControl
     {
         string filePath = null;
+        List<BindingBox> bindingBoxes = new List<BindingBox>();
+
         public PictureBox()
         {
             InitializeComponent();
@@ -101,9 +103,25 @@ namespace AWS_2.User_Controls
                 BoundingBox boundingBox = text.Geometry.BoundingBox;
                 BindingBox bindingBox = new BindingBox(width * boundingBox.Width, height * boundingBox.Height, height * boundingBox.Top, width * boundingBox.Left, text.Id.ToString(), isLine);
                 gContainer.Children.Add(bindingBox);
+                bindingBoxes.Add(bindingBox);
             }
 
             return detectTextResponse;
         }
+
+        public void ResetPictureBox()
+        {
+            if (bindingBoxes.Count>0)
+            {
+                foreach(BindingBox item in bindingBoxes)
+                {
+                    gContainer.Children.Remove(item);
+                }
+
+                bindingBoxes.Clear();
+            }
+        }
+
+        
     }
 }
